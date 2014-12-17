@@ -1,0 +1,17 @@
+= form_for @subtopic do |f|
+  - if @subtopic.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@subtopic.errors.count, "error")} prohibited this subtopic from being saved:"
+      %ul
+        - @subtopic.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = render 'layouts/textbar'    
+    = f.text_area :description, :id => 'wysihtml5-textarea', :class => 'input_area'
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,11 @@
+.row
+  .large-12.columns
+    %h1 Editing example
+
+    = render 'form'
+
+    = link_to 'Show', [@subtopic, @example]
+    \|
+    = link_to 'Back', subtopic_examples_path
+    \|
+    = link_to 'Destroy', [@subtopic, @example], :method => :delete, :data => { :confirm => 'Are you sure?' }    

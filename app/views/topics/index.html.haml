@@ -1,0 +1,22 @@
+.row
+  .large-12.columns
+    #course-details
+      %h3= @course.name
+      %p= @course.description
+    %h4 Listing topics
+
+    %table.table
+      %tr
+        %th Name
+        %th Description
+        %th View
+
+
+      - @topics.each do |topic|
+        %tr
+          %td= topic.name
+          %td= topic.description
+          %td= link_to 'Show', [@course, topic]
+    .linkgoback
+      =link_to 'Back', 'javascript:goBack()'
+

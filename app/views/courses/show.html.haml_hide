@@ -1,0 +1,56 @@
+.row
+  .large-8.columns
+    .show-info
+      .mid-title.thick
+        = @course.name
+        %br        
+      .subt-title.thin= @course.university
+      %br
+      = raw @course.description
+
+
+  .large-4.columns
+    .show-info
+      .admin-panel
+        Admin Panel
+        %p
+          %b= link_to "Create Topic for this course", new_course_topic_path(@course)
+
+        = link_to 'Edit Course Information', edit_course_path(@course)
+        \|
+        = link_to 'Back', courses_path    
+        
+
+
+.row
+  .large-12.columns      
+  %hr
+    .center
+      %br
+      %b.sub-title Course Tree
+      
+
+    %br
+    -@topics.each do |topic|
+      .topic-bar
+        %b= topic.name
+        %br
+      - topic.subtopics.each do |subtopic|
+        .subtopic-box
+          %b=link_to subtopic.name, subtopic
+        %br
+        .row
+          .large-6.columns
+            %b.column-title Proofs
+            %br
+            -subtopic.proofs.each do |proof|
+              .exercise-box
+                = link_to proof.name, [subtopic, proof]
+              %br
+          .large-6.columns
+            %b.column-title Examples
+            %br
+            -subtopic.examples.each do |example|
+              .exercise-box
+                =link_to example.name, [subtopic, example]
+              %br

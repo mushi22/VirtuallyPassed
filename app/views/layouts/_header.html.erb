@@ -1,0 +1,15 @@
+<header>
+	<% if signed_in? %>
+	<%= render 'layouts/navigation' %>
+	<% else %>
+	<%= render 'layouts/visitor_navigation'  %>
+	<% end %>
+	<!-- error message -->
+	<% flash.each do |type, message| %>
+	<div class="alert <%= bootstrapClassFor(type) %> fade in">
+		<button class="close" data-dismiss="alert">×</button>
+		<%= message %>
+	</div>
+	<% end %> 
+	<!-- error message ends -->
+</header>

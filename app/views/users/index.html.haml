@@ -1,0 +1,45 @@
+.container
+  .row
+    %h3.page-title User Profile
+    %label.edit-link=link_to ' Edit ', edit_user_registration_path
+  .row
+    .column
+      %table
+        %tbody
+          %tr
+            %td
+              %label.label-text Name
+              %label.value-text= @user.name
+          %tr
+            %td
+              %label.label-text Email
+              %label.value-text= @user.email
+    - if @proofs.size > 0
+      %h4.title-h4 Proofs
+      %table.table
+        %tbody
+          %tr
+            %th Title
+            %th Content
+          - @proofs.each do |proof|
+            %tr
+              %td= proof.name
+              %td= proof.content
+
+    - if @examples.size > 0
+      %h4.title-h4 Examples
+      %table.table
+        %tbody
+          %tr
+            %th Title
+            %th Content
+          - @examples.each do |example|
+            %tr
+              %td= example.name
+              %td= example.content
+
+
+
+
+
+

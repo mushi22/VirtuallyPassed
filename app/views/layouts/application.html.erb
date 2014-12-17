@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
+<%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Lato:300,400,700'%>
+<%= render "layouts/htmlheader" %>
+</head>
+<body>
+	<div class="container-fluid container-full">
+	<!-- site header starts -->
+		<%= render "layouts/header" %>
+	<!-- site header ends -->
+	<% @addClass = current_page?('/') ? 'full-width' : '' %>
+	<div class="row-fluid container-center <%= @addClass%>">
+		<%= yield %>
+	</div>
+
+	<!-- site footer -->
+		<%= render "layouts/footer" %>
+	<!-- site footer ends -->
+	</div>
+</body>
+</html>

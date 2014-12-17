@@ -1,0 +1,8 @@
+.visitor_navigation
+  .row.section
+    .large-6.columns
+      .vis-title.thick= link_to 'logo', root_path
+    .large-6.columns
+      .right.visitor-links
+        = link_to 'Sign in', new_user_session_path, :class =>"visitor-button"
+        = link_to 'Sign up', new_user_registration_path, :class =>"visitor-button"

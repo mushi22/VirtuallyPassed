@@ -1,0 +1,35 @@
+ActiveAdmin.register Product do
+
+  
+  # See permitted parameters documentation:
+  # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+  #
+  #permit_params :list, :of, :attributes, :on, :model, :title, :slug, :gallery, :category, :description, :price
+  #permit_params :title, :slug, :gallery, :category, :description, :price
+  permit_params do
+	params = [:title, :slug, :gallery, :category, :description, :price]
+  end
+  #
+  # or
+  #
+  # permit_params do
+  #  permitted = [:permitted, :attributes]
+  #  permitted << :other if resource.something?
+  #  permitted
+  # end
+  menu label: "Manage Products"
+  controller do
+  def create 
+  end
+  def show
+	Product.friendly.find(params[:id])
+  end
+  end
+=begin   form do |f|
+	f.inputs "Details" do
+        f.input :title       
+		f.actions
+	end	
+    end
+=end  
+end

@@ -1,0 +1,32 @@
+<div class="topics-slider">
+  <div class="row">
+     <h3><%= @course.name %></h3>
+    <p><%= @course.description %></p>
+	<% @firstSubtopic = @subtopics.first.id %>	
+  </div>
+<div class="slide-left-block">
+<ul class="slide-left">
+  <li class="heading">
+    <%= @topic.name %>
+  </li>
+  <% @subtopics.each do |subtopic| %>
+      <li class="sub-heading">
+        <a class="menuitem" subtopicid = "<%= subtopic.id %>" href="javascript:void(0);"> <%= subtopic.name%></a>
+      </li>
+  <% end %>
+</ul>
+</div>
+<div class="slide-right-block">
+<div class="content">
+</div>
+</div>
+</div>
+<script>
+$(".menuitem").click(function() {
+    var subtopicId = $(this).attr('subtopicid');
+    $(".slide-right-block .content").load('/topics/slidebox/'+subtopicId);
+});
+$(document).ready(function(){
+    $(".slide-right-block .content").load('/topics/slidebox/'+<%= @firstSubtopic%>);
+});
+</script>

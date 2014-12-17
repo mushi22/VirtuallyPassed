@@ -1,0 +1,21 @@
+= form_for ([@subtopic, @proof]) do |f|
+  - if @proof.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@proof.errors.count, "error")} prohibited this proof from being saved:"
+      %ul
+        - @proof.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+  = f.hidden_field :user_id, value: current_user.id
+  .field
+    = f.label :video_link
+    = f.text_field :video_link
+  .field
+    = f.label :content
+    = f.text_area :content, :class => 'input_area'
+  .actions
+    = f.submit 'Save'

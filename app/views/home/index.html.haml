@@ -1,0 +1,32 @@
+.hero
+  .row.section
+    .large-offset-7.large-5.columns.hero-title
+      .title.thin
+        revolutionizing
+        .thick e-learning
+      .sub-title.thin professional and organized lecture notes for your class
+      =form_for :test do |f|
+        .row.findcourse
+          .small-10.columns
+            =f.text_field :test, :placeholder => "enter your course code"
+          .small-2.columns
+            =link_to "Go", root_path, :class => "button postfix"
+
+.hero2
+  .row.section
+    .large-6.columns.hero-title
+      .sub-title.thin= link_to "latest courses", courses_path
+  
+
+//Replace this area with actual classes once implemented
+
+
+
+.hero3
+  - @courses.each_slice(3).to_a.each do |group|
+    .row.section
+      - group.each do |course|
+        .large-4.columns
+          .card
+            .card-title.thick=link_to course.name, course_topics_path(course)
+            .card-sub-title= course.university

@@ -1,0 +1,35 @@
+.row
+  .large-8.columns
+    .show-info
+      .sub-title.thin.grey
+        =link_to @course do
+          Course: &nbsp
+          = @course.name
+      %br
+      .mid-title= @topic.name
+      %br
+        =raw @topic.description
+      %p
+        %b="Subtopics in #{@topic.name}"
+        %br
+        - @subtopics.each do |subtopic|
+          =link_to subtopic do
+            .topic-bar
+              %b= subtopic.name
+              %br
+
+        
+      
+  .large-4.columns
+    .show-info
+      .admin-panel
+        Admin Panel
+        .sub-title.thick Create new subtopic 
+        =form_for @new_subtopic do |f|
+          = f.text_field :name, :placeholder => 'name'
+          = f.text_field :description, :placeholder => 'description' 
+          = f.hidden_field :topic_id, value: (params[:id])
+          = f.submit 'Submit' , :class => 'button success'  
+      = link_to 'Edit', edit_course_topic_path(@course, @topic)
+      \|
+      = link_to 'Back', course_topics_path

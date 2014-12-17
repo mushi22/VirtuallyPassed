@@ -1,0 +1,37 @@
+.row
+  .large-12.columns
+    .show-info
+      .center
+        .sub-title.thin.grey= @topic.name
+        .mid-title= @subtopic.name
+        = raw @subtopic.description
+      %p
+
+.row
+  .large-6.columns
+    %p
+      .proof
+        %b Proof:
+        //= raw @subtopic.proof
+        - @proofs.each do |proof|
+          %br=link_to proof.name, [@subtopic, proof]
+        %br
+        %b= link_to "All Proofs", subtopic_proofs_path(@subtopic)
+        %br
+        %b= link_to "Create new proof", new_subtopic_proof_path(@subtopic)
+        
+
+  .large-6.columns
+    %p
+      %b Example:
+      - @examples.each do |example|
+        %br= link_to example.name, [@subtopic, example]
+      
+      %br
+      %b= link_to "Create new Example", new_subtopic_example_path(@subtopic)
+%hr
+  .row
+    .large-12.columns
+      = link_to 'Edit', edit_subtopic_path(@subtopic)
+      \|
+      = link_to 'Back', subtopics_path

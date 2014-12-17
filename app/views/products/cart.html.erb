@@ -1,0 +1,43 @@
+<% if @cartProducts.empty? %>
+Currently cart is empty.
+<a href="<%= root_path%>" class="btn btn-success" >Continue Shopping</a>
+<% else %>
+<table class="table table-hover table-striped">
+<thead>
+	<tr>
+		<th>Product</th>
+		<th>Price</th>
+		<th>Quantity</th>
+	</tr>
+</thead>
+<tbody>
+	<% @cartProducts.each do |item| %>
+	<tr>
+		<td>
+		<%= item.title%>
+		</td>
+		<td>
+		<%= (item.price * @productQuantity[item.id.to_i]) %>
+		</td>
+		<td>
+		<%= text_field_tag 'pquantity', @productQuantity[item.id.to_i], :productid => item.id.to_i , :onchange => 'javascript:changeQuantity(this)' %>
+		</td>
+		<td>
+		<%=link_to 'Delete', removeproduct_product_path(item.id), :class => 'btn btn-danger' %>
+		</td>
+	</tr>
+	<% end %>
+</tbody>
+</table>
+
+<a href="<%= root_path%>" class="btn btn-info" >Back to home</a>
+<% end %>
+
+<script>
+function changeQuantity(ele){
+var productid = ele.getAttribute('productid');
+var quantity = ele.value;
+gourl = '/products/' + productid + '/' + quantity + '/productchange';
+window.location = gourl;
+}
+</script>

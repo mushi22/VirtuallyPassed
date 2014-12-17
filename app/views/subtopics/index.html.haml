@@ -1,0 +1,26 @@
+.row
+  .large-12.columns
+    %h1 Listing subtopics
+
+    %table
+      %tr
+        %th Name
+        %th Description
+        %th Video link
+        %th Proof
+        %th Example
+        %th
+        %th
+        %th
+
+      - @subtopics.each do |subtopic|
+        %tr
+          %td= subtopic.name
+          %td= subtopic.description
+          %td= link_to 'Show', subtopic
+          %td= link_to 'Edit', edit_subtopic_path(subtopic)
+          %td= link_to 'Destroy', subtopic, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %br
+
+    = link_to 'New Subtopic', new_subtopic_path

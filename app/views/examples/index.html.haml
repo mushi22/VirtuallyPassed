@@ -1,0 +1,25 @@
+.row
+  .large-12.columns
+    %h1 Listing examples
+
+    %table
+      %tr
+        %th Name
+        %th Video link
+        %th Content
+        %th
+        %th
+        %th
+
+      - @examples.each do |example|
+        %tr
+          %td= example.name
+          %td= example.video_link
+          %td.proof= raw example.content
+          %td= link_to 'Show', [@subtopic,example]
+          %td= link_to 'Edit', edit_subtopic_example_path(@subtopic, example)
+          %td= link_to 'Destroy', [@subtopic, example], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %br
+
+    = link_to 'New Example', new_subtopic_example_path

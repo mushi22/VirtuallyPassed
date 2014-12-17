@@ -1,0 +1,11 @@
+.row
+  .large-12.columns
+    %h1 Editing proof
+
+    = render 'form'
+
+    = link_to 'Show', [@subtopic, @proof]
+    \|
+    = link_to 'Back', subtopic_proofs_path
+    \|
+    = link_to 'Destroy', [@subtopic, @proof], :method => :delete, :data => { :confirm => 'Are you sure?' }
