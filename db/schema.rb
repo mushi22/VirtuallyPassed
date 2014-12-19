@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141215123926) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -45,8 +48,8 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.string   "name"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.integer  "user_id"
   end
 
-  add_index "examples", ["subtopic_id"], name: "index_examples_on_subtopic_id"
-  add_index "examples", ["user_id"], name: "index_examples_on_user_id"
+  add_index "examples", ["subtopic_id"], name: "index_examples_on_subtopic_id", using: :btree
+  add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "title"
@@ -91,8 +94,8 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.integer  "user_id"
   end
 
-  add_index "proofs", ["subtopic_id"], name: "index_proofs_on_subtopic_id"
-  add_index "proofs", ["user_id"], name: "index_proofs_on_user_id"
+  add_index "proofs", ["subtopic_id"], name: "index_proofs_on_subtopic_id", using: :btree
+  add_index "proofs", ["user_id"], name: "index_proofs_on_user_id", using: :btree
 
   create_table "subsubtopics", force: true do |t|
     t.string   "title"
@@ -102,7 +105,7 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.datetime "updated_at"
   end
 
-  add_index "subsubtopics", ["Subtopic_id"], name: "index_subsubtopics_on_Subtopic_id"
+  add_index "subsubtopics", ["Subtopic_id"], name: "index_subsubtopics_on_Subtopic_id", using: :btree
 
   create_table "subtopics", force: true do |t|
     t.string   "name"
@@ -112,7 +115,7 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.integer  "topic_id"
   end
 
-  add_index "subtopics", ["topic_id"], name: "index_subtopics_on_topic_id"
+  add_index "subtopics", ["topic_id"], name: "index_subtopics_on_topic_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.text     "description"
@@ -122,7 +125,7 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.string   "name"
   end
 
-  add_index "topics", ["course_id"], name: "index_topics_on_course_id"
+  add_index "topics", ["course_id"], name: "index_topics_on_course_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -140,7 +143,7 @@ ActiveRecord::Schema.define(version: 20141215123926) do
     t.string   "name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
