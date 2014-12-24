@@ -2,7 +2,9 @@
   <div class="row">
      <h3><%= @course.name %></h3>
     <p><%= @course.description %></p>
-	<% @firstSubtopic = @subtopics.first.id %>	
+	<% if @subtopics.present? %>
+	<% @firstSubtopic = @subtopics.first.id %>
+	<% end %>
   </div>
 <div class="slide-left-block">
 <ul class="slide-left">

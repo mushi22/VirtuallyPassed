@@ -1,16 +1,5 @@
 <ul class="bxslider">
-<% @examples.each do |topic|%>
 
-<li>
-<iframe 
-src="http://www.youtube.com/embed/<%= topic.video_link %>">
-</iframe>
-<a class="btn btn-primary show-topics" href="javascript:showContent('.examples_<%= topic.id %>');">Show topics</a>
-<div class="slider-content examples_<%= topic.id %>">
-<%=raw topic.content %>
-</div>
-</li>
-<% end %>
 <% @proofs.each do |topic|%>
 
 <li>
@@ -19,6 +8,27 @@ src="http://www.youtube.com/embed/<%= topic.video_link %>">
 </iframe>
 <a class="btn btn-primary show-topics" href="javascript:showContent('.proofs_<%= topic.id %>');">Show topics</a>
 <div class="slider-content proofs_<%= topic.id %>">
+<%=raw topic.content %>
+</div>
+</li>
+<% end %>
+<li>
+	<iframe 
+src="http://www.youtube.com/embed/<%= @subtopic.video_link %>">
+</iframe>
+<a class="btn btn-primary show-topics" href="javascript:showContent('.subtopic_<%= @subtopic.id %>');">Show topics</a>
+<div class="slider-content subtopic_<%= @subtopic.id %>">
+<%=raw @subtopic.description %>
+</div>
+</li>
+<% @examples.each do |topic|%>
+
+<li>
+<iframe 
+src="http://www.youtube.com/embed/<%= topic.video_link %>">
+</iframe>
+<a class="btn btn-primary show-topics" href="javascript:showContent('.examples_<%= topic.id %>');">Show topics</a>
+<div class="slider-content examples_<%= topic.id %>">
 <%=raw topic.content %>
 </div>
 </li>
@@ -34,6 +44,8 @@ $('.bxslider').bxSlider({
   pager:false,
   video: true,
   useCSS: false,
+  startSlide: <%= @proofs.size %>,
+  infiniteLoop:false,
   slideMargin: 30
 
 });

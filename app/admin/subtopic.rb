@@ -13,6 +13,16 @@ ActiveAdmin.register Subtopic do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :name, :description, :topic_id
+    form do |f|
+	f.inputs "Subtopics" do
+	
+	f.input :topic_id, :label => 'Topics', :as => :select, :collection => Topic.all.map{|u| ["#{u.name}", u.id]}
+	f.input :name
+	f.input :video_link, :label => 'Video Code'
+	f.input :description, :input_html => { :class => "tinymce" }
+  end
+    f.actions	
+  end
+  permit_params :name, :description, :topic_id, :video_link
   menu label: "Manage Subtopics"
 end
