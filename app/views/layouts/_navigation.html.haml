@@ -1,10 +1,8 @@
--# navigation styled for Zurb Foundation 5
--# the syntax for data-topbar may need to change for Zurb Foundation 5
-%nav.visitor_navigation.top-bar{"data-topbar" => true}
-  %ul.title-area
-    %li.name
-      = link_to 'logo', root_path
-
-  .top-bar-section
-    %ul.right
-      = render 'layouts/navigation_links'
+.visitor_navigation
+  .row.section
+    .large-6.columns
+      .vis-title.thick= link_to image_tag('site/logo-virt.png', alt:'Topics'), root_path
+    .large-6.columns
+      .right.visitor-links
+        %ul.right
+          =render 'layouts/navigation_links'

@@ -1,5 +1,5 @@
 <div class="topics-slider">
-  <div class="row">
+  <div class="row slider-head">
      <h3><%= @course.name %></h3>
     <p><%= @course.description %></p>
 	<% if @subtopics.present? %>
@@ -9,7 +9,7 @@
 <div class="slide-left-block">
 <ul class="slide-left">
   <li class="heading">
-    <%= @topic.name %>
+   <a class="back-arrow" href="<%= course_topics_path(@course) %>"><%= image_tag('site/back-24.png') %></a> <a href="javascript:void(0);" class="menuitem"> <%= @topic.name %></a>
   </li>
   <% @subtopics.each do |subtopic| %>
       <li class="sub-heading">
@@ -25,8 +25,11 @@
 </div>
 <script>
 $(".menuitem").click(function() {
+	$(".menuitem").removeClass('active');
+	$(this).addClass('active');
     var subtopicId = $(this).attr('subtopicid');
     $(".slide-right-block .content").load('/topics/slidebox/'+subtopicId);
+
 });
 $(document).ready(function(){
     $(".slide-right-block .content").load('/topics/slidebox/'+<%= @firstSubtopic%>);

@@ -4,19 +4,21 @@
 
 <li>
 <iframe 
-src="http://www.youtube.com/embed/<%= topic.video_link %>">
+src="//www.youtube.com/embed/<%= topic.video_link %>?showinfo=0" >
 </iframe>
-<a class="btn btn-primary show-topics" href="javascript:showContent('.proofs_<%= topic.id %>');">Show topics</a>
+<div class="bx-caption"><span><%= topic.name %></span></div>
+<a class="btn btn-primary show-topics" href="javascript:showContent('.proofs_<%= topic.id %>');">Show Notes</a>
 <div class="slider-content proofs_<%= topic.id %>">
 <%=raw topic.content %>
 </div>
 </li>
 <% end %>
 <li>
-	<iframe 
-src="http://www.youtube.com/embed/<%= @subtopic.video_link %>">
+<iframe 
+src="//www.youtube.com/embed/<%= @subtopic.video_link %>?showinfo=0">
 </iframe>
-<a class="btn btn-primary show-topics" href="javascript:showContent('.subtopic_<%= @subtopic.id %>');">Show topics</a>
+<div class="bx-caption"><span><%= @subtopic.name %></span></div>
+<a class="btn btn-primary show-topics" href="javascript:showContent('.subtopic_<%= @subtopic.id %>');">Show Notes</a>
 <div class="slider-content subtopic_<%= @subtopic.id %>">
 <%=raw @subtopic.description %>
 </div>
@@ -25,17 +27,18 @@ src="http://www.youtube.com/embed/<%= @subtopic.video_link %>">
 
 <li>
 <iframe 
-src="http://www.youtube.com/embed/<%= topic.video_link %>">
+src="//www.youtube.com/embed/<%= topic.video_link %>?showinfo=0">
 </iframe>
-<a class="btn btn-primary show-topics" href="javascript:showContent('.examples_<%= topic.id %>');">Show topics</a>
+<div class="bx-caption"><span><%= topic.name %></span></div>
+<a class="btn btn-primary show-topics" href="javascript:showContent('.examples_<%= topic.id %>');">Show Notes</a>
 <div class="slider-content examples_<%= topic.id %>">
 <%=raw topic.content %>
 </div>
 </li>
 <% end %>
 </ul>
-<div class="full-description">
-	
+<div class="bx-wrapper" style="max-width:100%;margin:0 auto;">
+<div id="full-description"></div>
 </div>
 <script> 
 $('.bxslider').bxSlider({
@@ -46,30 +49,44 @@ $('.bxslider').bxSlider({
   useCSS: false,
   startSlide: <%= @proofs.size %>,
   infiniteLoop:false,
-  slideMargin: 30
+  slideMargin: 30,
+  caption:true,
+  onSlideNext:function(){ $('#full-description').html(''); },
+  onSlidePrev:function(){ $('#full-description').html(''); },
+  prevText:'<- Proofs',
+  nextText:'Examples ->',
+  prevImage:'',
+  nextImage:''
 
 });
 function showContent(getSlidebox){
-	$(getSlidebox).toggle();
+	$('#full-description').show();
+	$('#full-description').removeClass('bx-viewport');
+	var tmpHtml = $('#full-description').html().length;
+	var slideHtml = $(getSlidebox).html();
+	if(tmpHtml == 0){
+		$('#full-description').addClass('bx-viewport');
+		$('#full-description').html(slideHtml);
+		var $target = $('html,body'); 
+		$target.animate({scrollTop: $target.height()}, 5000);
+		
+	} else {
+		$('#full-description').hide('slow').html('');		
+	}
+	/*$(getSlidebox).toggle();*/
 }
 </script>
 <style>
 	.slider-content{
-		margin-top:5px;
-		width:100%;		
-	}
-
-	.slide-left li{
-		border-bottom: 1px solid #000;
-		
+		/*margin-top:5px;
+		width:100%;*/
+	display:none;		
 	}
 	.bxslider li{
 		margin-left: -25px;
+		text-align:center;
 	}
-	.slide-left{
-		border: 1px solid #000;
-		border-bottom: 0;
-	}
+
 	.container-center{
 		width:90%;		
 	}
@@ -78,7 +95,13 @@ function showContent(getSlidebox){
 	  margin-left: 7px;
 	  width: 70%;
 	}
-	.show-topics{
-		margin-top:5px;
+	.show-topics {
+	  /*margin-bottom: 5px;*/
+	  margin-top: 8px;
+	}
+	#full-description{
+		width:100%;
+		overflow:hidden;
+		margin-left:-5px;		
 	}
 </style>

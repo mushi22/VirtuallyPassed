@@ -9,14 +9,13 @@
       %tr
         %th Name
         %th Description
-        %th View
+        
 
 
       - @topics.each do |topic|
         %tr
-          %td= topic.name
-          %td= topic.description
-          %td= link_to 'Show', [@course, topic]
+          %td= link_to topic.name, [@course, topic]
+          %td= strip_tags(topic.description)[0,120]
     .linkgoback
       =link_to 'Back', 'javascript:goBack()'
 

@@ -3,23 +3,17 @@ class TopicsController < ApplicationController
 
   def index
     @course = Course.find(params[:course_id])
-    @topics = @course.topics
+    @topics = @course.topics.order('id ASC')
   end
 
   def show
     @course = Course.find(params[:course_id])
     @topic = @course.topics.find(params[:id])
-    #@new_subtopic = @topic.subtopics.build
-	#@proofs = @subtopics.proofs
-	@subtopics = @topic.subtopics.order('id DESC')
+	@subtopics = @topic.subtopics.order('id ASC')
   end
   def slidebox
-	# @course = Course.find(params[:course_id])
-    # @topic = @course.topics.find(params[:id])
-	# @subtopics = @topic.subtopics
-	#@documents = Subtopic.select('subtopics.*,examples.video_link as egVideoLink,proofs.video_link as pfVideoLink,examples.content as egContent, proofs.content as pfContent').joins('LEFT JOIN examples ON examples.subtopic_id = subtopics.id LEFT JOIN proofs ON proofs.subtopic_id = subtopics.id').where('subtopics.id = ?',params[:subtopic_id])
-	@examples = Example.where('subtopic_id = ?',params[:subtopic_id])
-	@proofs = Proof.where('subtopic_id = ?',params[:subtopic_id])
+	@examples = Example.where('subtopic_id = ?',params[:subtopic_id]).order("id ASC")
+	@proofs = Proof.where('subtopic_id = ?',params[:subtopic_id]).order("id DESC")
 	@subtopic = Subtopic.find(params[:subtopic_id])
 	render layout: false
 

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   #root 'courses#index'
   root 'home#index'
-  get 'game' => 'home#game'
-  get 'gmap' => 'home#gmap'
-  get 'gameroll' => 'home#gameroll'
+  #get 'game' => 'home#game'
+  #get 'gmap' => 'home#gmap'
+  #get 'gameroll' => 'home#gameroll'
   resources :topics do
   get ':slidebox/:subtopic_id' => :slidebox, on: :collection
   end
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 	resources :examples
     resources :proofs  
   end
-  resources :products do
+=begin  resources :products do
   member do
   get 'addtocart' => 'products#addtocart', as: :addtocart
   get 'removeproduct'
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get ':id/:qty/productchange' => 'products#changeproducts', as: :changeproducts
   end
   end
+=end
+  
   if Rails.env.production?
    get '404', :to => 'application#page_not_found'
   end  

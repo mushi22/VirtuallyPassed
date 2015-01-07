@@ -244,3 +244,16 @@ ActiveAdmin.setup do |config|
   
 
 end
+module ActiveAdmin
+  module Views
+    module Pages
+      class Base < Arbre::HTML::Document
+
+        def build_footer
+           # whatever
+        end
+
+      end
+    end
+  end
+end 

@@ -31,6 +31,8 @@
 }
 .slide-left{
 	list-style:none;
+	padding: 0;
+	margin:0;
 }
 .slide-left .heading{
 	font-weight: bold;
@@ -40,11 +42,37 @@
 	
 }
 .slide-left-block {
-    float: left;
-    max-height: 459px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width: 18%;
+  background: none repeat scroll 0 0 #f8f8f8;
+  float: left;
+  width: 250px;
+  border:1px solid #e7e7e7;
+}
+.slide-right-block{
+  border:1px solid #e7e7e7;
+  
+}
+.slide-left .menuitem{
+	display: block;
+	padding: 10px 15px;	
+}
+.slide-left .menuitem:focus,.slide-left .menuitem:hover,.slide-left .menuitem.active{
+	background: #eee;
+	text-decoration:none;
+}
+.heading .menuitem{
+	color: #000;
+	text-decoration:none;
+	cursor:default;
+}
+.sub-heading .menuitem {
+	font-size:14px;
+	line-height:1.42857;
+}
+.slider-head{
+	padding-left:3%;
+}
+.slide-left li{
+border-bottom: 1px solid #e7e7e7;
 }
 .slide-right-block{
 	width:55%;
@@ -292,4 +320,22 @@ float:left;
 }
 .mce-container{
 	margin-top:20px;
+}
+.back-arrow {
+  float: left;
+  margin-top: 8px;
+  padding-left: 8px;
+  padding-right: 11px;
+}
+.vis-title{
+	width:50px;
+}
+
+ul.right li {
+  float: left;
+  list-style: outside none none;
+  width: 75px;
+}
+.visitor-nav{
+	 width: 75%;
 }

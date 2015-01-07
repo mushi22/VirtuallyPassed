@@ -23,6 +23,18 @@ ActiveAdmin.register Subtopic do
   end
     f.actions	
   end
+  index do
+    column :id
+	column :name
+	column :video_link
+	column "Content" do |item|
+		strip_tags(item.description)[0,300]
+		
+	end
+	column :created_at
+	column :updated_at
+	actions 
+  end
   permit_params :name, :description, :topic_id, :video_link
   menu label: "Manage Subtopics"
 end

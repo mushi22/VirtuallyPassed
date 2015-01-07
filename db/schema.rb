@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220121821) do
+ActiveRecord::Schema.define(version: 20150103075654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 20141220121821) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "order_id"
   end
 
+  add_index "examples", ["order_id"], name: "index_examples_on_order_id", using: :btree
   add_index "examples", ["subtopic_id"], name: "index_examples_on_subtopic_id", using: :btree
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
 
@@ -92,8 +94,10 @@ ActiveRecord::Schema.define(version: 20141220121821) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "order_id"
   end
 
+  add_index "proofs", ["order_id"], name: "index_proofs_on_order_id", using: :btree
   add_index "proofs", ["subtopic_id"], name: "index_proofs_on_subtopic_id", using: :btree
   add_index "proofs", ["user_id"], name: "index_proofs_on_user_id", using: :btree
 
